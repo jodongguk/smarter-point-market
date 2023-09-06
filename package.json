@@ -34,6 +34,7 @@
   "dependencies": {
     "@carbon/charts-svelte": "^1.11.21",
     "@carbon/styles": "^1.36.0",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/cookie": "^0.5.1",
     "@urql/svelte": "^4.0.2",
     "cookie": "^0.5.0",
