@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+.login-background {
+	background: url('$lib/assets/login_background.svg');
+	background-size: cover;
+}
