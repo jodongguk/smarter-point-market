@@ -32,6 +32,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@apollo/client": "^3.8.3",
     "@carbon/charts-svelte": "^1.11.21",
     "@carbon/styles": "^1.36.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -39,9 +40,10 @@
     "@urql/svelte": "^4.0.2",
     "cookie": "^0.5.0",
     "d3": "^7.8.5",
-    "graphql": "^16.6.0",
+    "graphql": "^16.8.0",
     "graphql-config": "^5.0.2",
     "graphql-request": "^5.0.0",
+    "svelte-apollo": "^0.5.0",
     "svelte-daum-postcode": "^0.0.1",
     "svelte-loading-spinners": "^0.3.4"
   }

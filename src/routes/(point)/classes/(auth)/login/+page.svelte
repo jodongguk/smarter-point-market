@@ -2,12 +2,23 @@
 	import { goto } from '$app/navigation';
 	import AuthLogo from "$lib/components/common/AuthLogo.svelte";
 	import KakaoIcon from "$lib/assets/images/kakao_icon.svg";
+	import type {ExternalServiceError} from "$data/exception/ExternalServiceError";
+	import type {InternalServiceError} from "$data/exception/InternalServiceError";
+	import AuthService from "$data/services/auth/AuthService";
 
 	let id: string;
 	let password: string;
 
 	async function handleLogin() {
-		goto('main')
+		try {
+			await AuthService.getLoginToken({
+				id,
+				password
+			});
+			await goto('main');
+		} catch (err: ExternalServiceError | InternalServiceError) {
+			alert(err.message);
+		}
 	}
 </script>
 
@@ -23,7 +34,7 @@
 			<div>
 				<input class="w-full text-lg rounded-lg px-4 py-3 bg-gray-100 focus:outline-point-market-purple1 "
 					   required
-					   type="email"
+					   type="text"
 					   placeholder="아이디"
 					   bind:value={id} />
 			</div>
@@ -38,7 +49,7 @@
 				<button type="submit" class="bg-point-market-purple2 text-white p-3.5 w-full rounded-lg tracking-wide font-bold font-display">
 					로그인
 				</button>
-				<button type="button" class="bg-white border border-[#DDDDDD] text-[#434343] p-3.5 w-full rounded-lg tracking-wide font-bold font-display" on:click={() => goto('/join')}>
+				<button type="button" class="bg-white border border-[#DDDDDD] text-[#434343] p-3.5 w-full rounded-lg tracking-wide font-bold font-display" on:click={() => goto('join')}>
 					회원가입
 				</button>
 			</div>
