@@ -49,8 +49,8 @@ export const COOKIE_SESSION_OPTIONS: Parameters<Cookies["set"]>[2] = {
     path: "/",
     httpOnly: true,
     sameSite: "strict",
-    maxAge: 1000 * 60 * 15,
-    expires: new Date(Date.now() + 1000 * 60 * 15)
+    maxAge: 1000 * 60 * 10,
+    expires: new Date(Date.now() + 1000 * 60 * 10)
 };
 export const COOKIE_PERSISTENT_OPTIONS: Parameters<Cookies["set"]>[2] = {
     path: "/",

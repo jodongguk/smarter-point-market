@@ -3,7 +3,7 @@ mutation UserLogin(
 	$password: String!
 ) {
 	login(
-		userid: $userid,
+		userid: $userid
 		password: $password
 	) {
 		accessToken

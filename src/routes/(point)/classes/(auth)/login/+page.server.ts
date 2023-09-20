@@ -11,8 +11,9 @@ import {
 } from "$data/consts/Common";
 
 export const actions: Actions = {
-    default: async ({request, cookies}) => {
-        const data = await request.formData();
+    default: async (event) => {
+
+        const data = await event.request.formData();
         const dataFields = {
             userid: data.get("userid")?.toString(),
             password: data.get("password")?.toString()
@@ -24,14 +25,12 @@ export const actions: Actions = {
         try {
             const userLoginStore = new UserLoginStore();
             const fields = dataFields as Record<keyof typeof dataFields, string>;
-
-            const data = await userLoginStore.mutate(fields);
+            const {data} = await userLoginStore.mutate(fields, {event});
             if (data == null) {
                 throw Error("Login returned a value of undefined.");
             }
-
-            cookies.set(COOKIE_USER_SESSION, data.login.accessToken, COOKIE_SESSION_OPTIONS);
-            cookies.set(COOKIE_USER_REFRESH, data.login.refreshToken, COOKIE_PERSISTENT_OPTIONS);
+            event.cookies.set(COOKIE_USER_SESSION, data.login.accessToken, COOKIE_SESSION_OPTIONS);
+            event.cookies.set(COOKIE_USER_REFRESH, data.login.refreshToken, COOKIE_PERSISTENT_OPTIONS);
         } catch (e) {
             throw error(HTTPCode.InternalServerError, Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString());
         }
