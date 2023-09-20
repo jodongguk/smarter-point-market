@@ -1,3 +1,4 @@
+import { resolve } from "node:path";
 import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
@@ -13,7 +14,8 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		alias: {
-			$data: './src/data'
+			$data: './src/data',
+			$houdini: resolve(".", "$houdini")
 		}
 	}
 };

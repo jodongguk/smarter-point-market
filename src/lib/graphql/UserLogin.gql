@@ -1,0 +1,12 @@
+mutation UserLogin(
+	$userid: String!,
+	$password: String!
+) {
+	login(
+		userid: $userid,
+		password: $password
+	) {
+		accessToken
+		refreshToken
+	}
+}
