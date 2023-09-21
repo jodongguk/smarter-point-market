@@ -1,4 +1,5 @@
 import {HoudiniClient} from "$houdini";
+import {error} from "@sveltejs/kit";
 
 export default new HoudiniClient({
     url: import.meta.env.VITE_GRAPHQL_ENDPOINT,
@@ -8,5 +9,16 @@ export default new HoudiniClient({
                 authorization: `Bearer ${session.token}`,
             },
         };
+    },
+    throwOnError: {
+        // can be any combination of
+        // query, mutation, subscription, and all
+        operations: ['all'],
+        // the function to call
+        error: (errors, ctx) =>
+            error(
+                500,
+                `(${ctx.artifact.name}): ` + errors.map((err) => err.message).join('. ') + '.'
+            ),
     },
 })

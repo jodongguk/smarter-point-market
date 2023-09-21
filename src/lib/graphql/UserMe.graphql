@@ -1,0 +1,14 @@
+query UserMe {
+    userMe {
+        id
+        name
+        phoneNumber
+        birthDate
+        credit {
+            balance
+        }
+        authorities {
+            authorityName
+        }
+    }
+}
