@@ -17,8 +17,9 @@
 <svelte:head>
 </svelte:head>
 
-<div class="flex flex-col items-center h-screen">
-	<div class="flex flex-col h-full items-center px-10 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl bg-[#F9FBFF]">
+<div class="flex flex-col h-full justify-center items-center h-screen px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl bg-[#F9FBFF]">
+
+	<div class="w-full">
 		<form method="POST" use:enhance={() => {
 			authFromSubmitting.set(true);
 			return async ({ result }) => {
@@ -89,13 +90,12 @@
 
 				</div>
 
-				<div class="mb-6">
+				<div class="my-6">
 					<button type="submit" class="bg-point-market-purple2 text-white py-3 w-full rounded-full tracking-wide font-bold font-display">
 						가입하기
 					</button>
 				</div>
 			</div>
 		</form>
-
 	</div>
 </div>
