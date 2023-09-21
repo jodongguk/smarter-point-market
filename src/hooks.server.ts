@@ -6,7 +6,7 @@ import {
     COOKIE_USER_REFRESH,
     COOKIE_USER_SESSION,
     HTTPCode
-} from "$data/consts/Common";
+} from "$lib/constants";
 
 /**
  * Refreshes a user's session token.

@@ -4,7 +4,7 @@ import {
     COOKIE_USER_REFRESH,
     COOKIE_USER_SESSION,
     HTTPCode
-} from "$data/consts/Common";
+} from "$lib/constants";
 
 export async function GET({cookies, locals, url}) {
 

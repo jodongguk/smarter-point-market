@@ -8,7 +8,7 @@ import {
     COOKIE_USER_REFRESH,
     COOKIE_USER_SESSION,
     HTTPCode
-} from "$data/consts/Common";
+} from "$lib/constants";
 
 export const actions: Actions = {
     default: async (event) => {
