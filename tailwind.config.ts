@@ -1,6 +1,16 @@
+import { join } from 'path';
+import type { Config } from 'tailwindcss'
+import { skeleton } from '@skeletonlabs/tw-plugin';
+
+
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ['./src/**/*.{html,js,svelte,ts}',
+    content: [
+        './src/**/*.{html,js,svelte,ts}',
+        join(require.resolve(
+                '@skeletonlabs/skeleton'),
+            '../**/*.{html,js,svelte,ts}'
+        )
     ],
     safelist: [
         {pattern: /(to|from)-point-market-gradient(1|2|3|4|5|6)-(to|from)/,},
@@ -26,6 +36,7 @@ export default {
     },
     plugins: [
         require('@tailwindcss/aspect-ratio'),
+        skeleton
     ],
-}
+} satisfies Config
 

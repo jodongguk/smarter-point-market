@@ -1,0 +1,21 @@
+mutation UserJoin(
+    $userid: String!
+    $password: String!
+    $name: String!
+    $phoneNumber: String!
+    $birthDate: String
+) {
+    join(inputJoinAccount: {
+        userid: $userid
+        password: $password
+        name: $name
+        phoneNumber: $phoneNumber
+        birthDate: $birthDate
+    }) {
+        id
+        userid
+        name
+        birthDate
+        phoneNumber
+    }
+}
