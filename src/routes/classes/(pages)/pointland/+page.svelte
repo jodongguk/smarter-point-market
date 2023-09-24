@@ -5,5 +5,3 @@ import AppHeader from "$lib/components/common/AppHeader.svelte";
 <svelte:head>
 </svelte:head>
 
-<AppHeader />
-

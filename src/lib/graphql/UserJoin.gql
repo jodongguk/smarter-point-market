@@ -4,6 +4,7 @@ mutation UserJoin(
     $name: String!
     $phoneNumber: String!
     $birthDate: String
+    $institutes: [InputInstitute]
 ) {
     join(inputJoinAccount: {
         userid: $userid
@@ -11,6 +12,7 @@ mutation UserJoin(
         name: $name
         phoneNumber: $phoneNumber
         birthDate: $birthDate
+        institutes: $institutes
     }) {
         id
         userid

@@ -1,0 +1,24 @@
+query Institutes(
+    $name: String
+    $owner: String
+    $businessRegistrationNumber: String
+) {
+    institutes(filter: {
+        name: $name
+        owner: $owner
+        businessRegistrationNumber: $businessRegistrationNumber
+    }) {
+        edges {
+            cursor
+            node{
+                businessRegistrationNumber
+                name
+                owner
+                tel
+                zip
+                addr1
+                addr2
+            }
+        }
+    }
+}

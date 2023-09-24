@@ -4,6 +4,9 @@
     console.log($page.error);
 </script>
 
+
+
+
 <div class="flex flex-col items-center h-screen">
     <div class="bg-gradient-to-br from-point-market-gradient3-from to-point-market-gradient3-to text-white min-h-screen w-full">
 

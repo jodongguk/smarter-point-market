@@ -1,7 +1,6 @@
 import {error, fail, redirect} from "@sveltejs/kit";
 import type {Actions, PageServerLoad} from "./$types";
 import {getMissingFields} from "$lib/utils/getMissingFields";
-import {UserLoginStore} from "$houdini";
 import {
     COOKIE_SESSION_OPTIONS,
     COOKIE_PERSISTENT_OPTIONS,
@@ -9,6 +8,7 @@ import {
     COOKIE_USER_SESSION,
     HTTPCode
 } from "$lib/constants";
+import UserService from "$data/service/UserService";
 
 export const actions: Actions = {
     default: async (event) => {
@@ -22,14 +22,7 @@ export const actions: Actions = {
         if (missing.length > 0) return fail(HTTPCode.BadRequest, {missing});
 
         try {
-            const userLoginStore = new UserLoginStore();
-            const fields = dataFields as Record<keyof typeof dataFields, string>;
-            const {data} = await userLoginStore.mutate(fields, {event});
-            if (data == null) {
-                throw Error("Login returned a value of undefined.");
-            }
-            event.cookies.set(COOKIE_USER_SESSION, data.login.accessToken, COOKIE_SESSION_OPTIONS);
-            event.cookies.set(COOKIE_USER_REFRESH, data.login.refreshToken, COOKIE_PERSISTENT_OPTIONS);
+            await UserService.userLogin({userid: dataFields.userid, password: dataFields.password}, event);
         } catch (e) {
             throw error(HTTPCode.InternalServerError, Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString());
         }

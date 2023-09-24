@@ -7,10 +7,7 @@ import { skeleton } from '@skeletonlabs/tw-plugin';
 export default {
     content: [
         './src/**/*.{html,js,svelte,ts}',
-        join(require.resolve(
-                '@skeletonlabs/skeleton'),
-            '../**/*.{html,js,svelte,ts}'
-        )
+        join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
     ],
     safelist: [
         {pattern: /(to|from)-point-market-gradient(1|2|3|4|5|6)-(to|from)/,},
@@ -36,7 +33,8 @@ export default {
     },
     plugins: [
         require('@tailwindcss/aspect-ratio'),
-        skeleton
+        skeleton({
+        })
     ],
 } satisfies Config
 
