@@ -4,6 +4,11 @@
     import AlertIcon from "$lib/assets/images/alert_icon.svg";
     import ClassDrawer from "$lib/components/drawer/ClassDrawer.svelte";
     import { initializeStores } from '@skeletonlabs/skeleton';
+    import {goto} from "$app/navigation";
+
+    const gotoMain = () => {
+        goto('main');
+    }
 
     initializeStores();
 </script>
@@ -17,7 +22,7 @@
             <svelte:fragment slot="lead">
                 <p></p>
             </svelte:fragment>
-            <img class="" src="{ServiceHeaderLogo}"/>
+            <button on:click={gotoMain}><img class="" src="{ServiceHeaderLogo}"/></button>
             <svelte:fragment slot="trail">
                 <button>
                     <img class="w-3/5" src="{AlertIcon}" />

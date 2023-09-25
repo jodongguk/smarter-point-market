@@ -5,6 +5,7 @@ import {
     COOKIE_USER_SESSION,
     HTTPCode
 } from "$lib/constants";
+import {redirect} from "@sveltejs/kit";
 
 export async function GET({cookies, locals, url}) {
 

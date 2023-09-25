@@ -5,7 +5,11 @@
     const budgetWriteDrawer = () => {
         const settings: DrawerSettings = {
             id: 'budgetWriteDrawer',
-            position: 'bottom'
+            position: 'left',
+            width: 'w-full',
+            meta: {
+                title: "예산 세우기"
+            }
         };
         drawerStore.open(settings);
     }

@@ -1,6 +1,7 @@
 import { join } from 'path';
 import type { Config } from 'tailwindcss'
 import { skeleton } from '@skeletonlabs/tw-plugin';
+import {pointMarketTheme} from "./point-market-theme";
 
 
 /** @type {import('tailwindcss').Config} */
@@ -34,6 +35,11 @@ export default {
     plugins: [
         require('@tailwindcss/aspect-ratio'),
         skeleton({
+            themes: {
+                custom: [
+                    pointMarketTheme
+                ]
+            }
         })
     ],
 } satisfies Config
