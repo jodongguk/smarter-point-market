@@ -3,7 +3,7 @@ mutation UserJoin(
     $password: String!
     $name: String!
     $phoneNumber: String!
-    $birthDate: String
+    $birthDate: Date
     $institutes: [InputInstitute]
 ) {
     join(inputJoinAccount: {

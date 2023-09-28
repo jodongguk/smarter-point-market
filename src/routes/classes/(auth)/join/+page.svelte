@@ -3,7 +3,7 @@
 	import CameraIcon from "$lib/assets/images/camera_icon.svg";
 	import {authFromSubmitting} from "$lib/stores";
 	import {Step, Stepper} from "@skeletonlabs/skeleton";
-	import {InstitutesStore} from "$houdini";
+	import {InstituteListStore} from "$houdini";
 	import UserService from "$data/service/UserService.js";
 	import {goto} from "$app/navigation";
 
@@ -21,13 +21,13 @@
 	let missing: string[] = [];
 
 	const searchInstituteByBusinessRegistrationNumber = (async () => {
-		const institutesStore = new InstitutesStore();
+		const instituteListStore = new InstituteListStore();
 		const dataFields = {
 			businessRegistrationNumber: businessRegistrationNumber
 		};
 		const fields = dataFields as Record<keyof typeof dataFields, string>;
 
-		const result = await institutesStore.fetch({variables: fields});
+		const result = await instituteListStore.fetch({variables: fields});
 		searchInstitutes = result.data.institutes?.edges.map((e) => e.node);
 	});
 

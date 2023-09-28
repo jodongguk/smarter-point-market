@@ -24,7 +24,7 @@ export const actions: Actions = {
         try {
             await UserService.userLogin({userid: dataFields.userid, password: dataFields.password}, event);
         } catch (e) {
-            throw error(HTTPCode.InternalServerError, Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString());
+            return fail(HTTPCode.InternalServerError, Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString());
         }
 
         throw redirect(HTTPCode.SeeOther, data.get("from")?.toString() ?? "/classes/main");

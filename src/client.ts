@@ -18,9 +18,12 @@ export default new HoudiniClient({
         operations: ['all'],
         // the function to call
         error: (errors, ctx) =>
-            error(
-                500,
-                `(${ctx.artifact.name}): ` + errors.map((err) => err.message).join('. ') + '.'
+            new Error(
+                // `(${ctx.artifact.name}): ` + errors.map((err) => err.message).join('. ') + '.'
+                `(${ctx.artifact.name}): ` + errors.map((err) => err.message).join('. ') + '.',
+                {
+                    cause: errors
+                }
             ),
     },
 })

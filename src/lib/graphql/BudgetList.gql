@@ -1,0 +1,25 @@
+query BudgetList(
+    $instituteId: ID!
+) {
+    budgets(
+        filter: {
+            institute: {id: $instituteId}
+        }
+    ) {
+        pageInfo {
+            startCursor
+            endCursor
+            hasNextPage
+            hasPreviousPage
+        }
+        edges {
+            cursor
+            node {
+                id
+                startDate
+                endDate
+                budgetAmount
+            }
+        }
+    }
+}

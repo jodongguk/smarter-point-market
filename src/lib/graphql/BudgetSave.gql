@@ -1,0 +1,28 @@
+mutation BudgetSave (
+    $institueId: ID!
+    $startDate: Date
+    $endDate: Date
+    $budgetAmount: Int
+) {
+    budget (inputBudget: {
+        institute: {id: $institueId}
+        startDate: $startDate
+        endDate: $endDate
+        budgetAmount: $budgetAmount
+    }) {
+        id
+        startDate
+        endDate
+        budgetAmount
+        institute {
+            id
+            name
+            owner
+            tel
+            zip
+            addr1
+            addr2
+            businessRegistrationNumber
+        }
+    }
+}

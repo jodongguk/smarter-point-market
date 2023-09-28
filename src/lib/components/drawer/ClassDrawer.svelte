@@ -2,6 +2,8 @@
     import {getDrawerStore, Drawer, AppBar, AppShell} from '@skeletonlabs/skeleton';
     import ChevronLeft from "$lib/assets/images/chevron-left.svg";
     import AlertIcon from "$lib/assets/images/alert_icon.svg";
+    import BudgetWriter from "$lib/components/drawer/BudgetWriter.svelte";
+    import AssignmentDrawer from "$lib/components/drawer/AssignmentWriteDrawer.svelte";
 
     const drawerStore = getDrawerStore();
 
@@ -27,11 +29,14 @@
             </AppBar>
         </svelte:fragment>
 
-        <div class="w-full h-full flex justify-center">
-            <div>
-            <input type="number" />
-            </div>
-        </div>
-        <svelte:fragment slot="pageFooter">Page Footer</svelte:fragment>
+        {#if classesDrawer === "budgetWriteDrawer"}
+            <BudgetWriter {drawerStore} />
+        {/if}
+
+        {#if classesDrawer === "assignmentWriteDrawer"}
+            <AssignmentDrawer {drawerStore} />
+        {/if}
+
+        <svelte:fragment slot="pageFooter"></svelte:fragment>
     </AppShell>
 </Drawer>

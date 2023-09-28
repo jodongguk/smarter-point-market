@@ -1,0 +1,31 @@
+mutation AssignmentSave (
+    $institueId: ID!
+    $startDate: Date
+    $endDate: Date
+    $title: String
+    $rewardCredit: Int
+) {
+    assignment (inputAssignment: {
+        institute: {id: $institueId}
+        title: $title
+        startDate: $startDate
+        endDate: $endDate
+        rewardCredit: $rewardCredit
+    }) {
+        id
+        title
+        startDate
+        endDate
+        rewardCredit
+        institute {
+            id
+            name
+            owner
+            tel
+            zip
+            addr1
+            addr2
+            businessRegistrationNumber
+        }
+    }
+}

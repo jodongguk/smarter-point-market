@@ -1,10 +1,16 @@
-<script>
+<script lang="ts">
+    import { page } from '$app/stores';
     import {AppBar, AppShell, Toast} from "@skeletonlabs/skeleton";
     import ServiceHeaderLogo from "$lib/assets/images/smarter_logo_header.svg";
     import AlertIcon from "$lib/assets/images/alert_icon.svg";
     import ClassDrawer from "$lib/components/drawer/ClassDrawer.svelte";
     import { initializeStores } from '@skeletonlabs/skeleton';
     import {goto} from "$app/navigation";
+
+
+    $: pathname = $page.url.pathname;
+    $: checkMenuActive = (path: string) => pathname.includes(path);
+    $: checkMenuActiveClass = (path: string) => checkMenuActive(path)? "text-black border-b-4 border-point-market-purple1" : "text-slate-500";
 
     const gotoMain = () => {
         goto('main');
@@ -29,27 +35,21 @@
                 </button>
             </svelte:fragment>
         </AppBar>
-        <div class="flex ">
-            <button class="flex-1 py-2 font-semibold text-black border-b-4 border-point-market-purple1">예산설정</button>
-            <button class="flex-1 py-2 font-semibold text-slate-500">미션임파서블</button>
-            <button class="flex-1 py-2 font-semibold text-slate-500">인증센터</button>
+        <div class="flex">
+            <button class="flex-1 py-2 font-semibold {checkMenuActiveClass('budget')}" on:click="{ () => goto('budget') }">예산설정</button>
+            <button class="flex-1 py-2 font-semibold {checkMenuActiveClass('assignment')}" on:click="{ () => goto('assignment') }">미션임파서블</button>
+            <button class="flex-1 py-2 font-semibold {checkMenuActiveClass('confirm')}"on:click="{ () => goto('confirm') }">인증센터</button>
         </div>
         <hr class="opacity-50" />
     </svelte:fragment>
 
-    <svelte:fragment slot="pageHeader">
-
-    </svelte:fragment>
+    <svelte:fragment slot="pageHeader"></svelte:fragment>
 
     <!-- Router Slot -->
     <slot />
     <!-- ---- / ---- -->
 
-    <svelte:fragment slot="pageFooter">
+    <svelte:fragment slot="pageFooter"></svelte:fragment>
 
-    </svelte:fragment>
-
-    <svelte:fragment slot="footer">
-
-    </svelte:fragment>
+    <svelte:fragment slot="footer"></svelte:fragment>
 </AppShell>

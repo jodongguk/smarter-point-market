@@ -1,5 +1,12 @@
 <script lang="ts">
+    import type { PageData } from './$types';
     import { getDrawerStore, type DrawerSettings } from '@skeletonlabs/skeleton';
+    import {formatNumberCommaText} from "$lib/utils/FormatData";
+
+    export let data: PageData;
+
+    $: budgets = data.list;
+
     const drawerStore = getDrawerStore();
 
     const budgetWriteDrawer = () => {
@@ -22,28 +29,31 @@
         + 신규예산등록
     </button>
 
-    <div class="m-auto h-52 w-full max-w-md bg-white shadow p-2 border-t-4 border-point-market-purple1 rounded">
-        <header class="p-2 border-b flex">
-            <div class="flex flex-col">
-                <h4 class="text-lg font-semibold">예산 설정 정보</h4>
-                <h1 class="text-lg text-green-600">300,000원</h1>
-            </div>
-        </header>
-        <div class="flex flex-wrap p-2 w-full gap-4 justify-between">
-            <div class="flex flex-col w-full">
-                <h4 class="text-xs">예산 사용 기간</h4>
-                <h1 class="text-lg">2023.09.01 ~ 2023.09.31</h1>
-            </div>
-            <div class="flex flex-col">
-                <h4 class="text-xs">정산 예정일</h4>
-                <h1 class="text-md">2023.10.01</h1>
-            </div>
-            <!--<div class="flex flex-col">
-                <h4 class="text-xs">예상 환급 비율</h4>
-                <h1 class="text-md font-thin">100원 = 100Point</h1>
-            </div>-->
-        </div>
-    </div>
+    {#each budgets as b}
 
+        <div class="m-auto h-52 w-full max-w-md bg-white shadow p-2 border-t-4 border-point-market-purple1 rounded">
+            <header class="p-2 border-b flex">
+                <div class="flex flex-col">
+                    <h4 class="text-lg font-semibold">예산 설정 정보</h4>
+                    <h1 class="text-lg text-green-600">{formatNumberCommaText(b.budgetAmount)}원</h1>
+                </div>
+            </header>
+            <div class="flex flex-wrap p-2 w-full gap-4 justify-between">
+                <div class="flex flex-col w-full">
+                    <h4 class="text-xs">예산 사용 기간</h4>
+                    <h1 class="text-lg">{b.startDate} ~ {b.endDate}</h1>
+                </div>
+
+                <!--<div class="flex flex-col">
+                    <h4 class="text-xs">정산 예정일</h4>
+                    <h1 class="text-md">2023.10.01</h1>
+                </div>
+                <div class="flex flex-col">
+                    <h4 class="text-xs">예상 환급 비율</h4>
+                    <h1 class="text-md font-thin">100원 = 100Point</h1>
+                </div>-->
+            </div>
+        </div>
+    {/each}
 
 </div>

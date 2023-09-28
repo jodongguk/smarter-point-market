@@ -7,7 +7,6 @@ import {
     COOKIE_USER_REFRESH,
     COOKIE_USER_SESSION
 } from "$lib/constants";
-import {list} from "postcss";
 
 
 export default class UserService {

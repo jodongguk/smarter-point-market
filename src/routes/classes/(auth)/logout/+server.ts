@@ -13,10 +13,5 @@ export async function GET({cookies, locals, url}) {
     cookies.delete(COOKIE_USER_SESSION, COOKIE_SESSION_OPTIONS);
     cookies.delete(COOKIE_USER_REFRESH, COOKIE_PERSISTENT_OPTIONS);
 
-    return new Response(null, {
-        headers: {
-            location: `/classes/login`
-        },
-        status: HTTPCode.NotAuthorized
-    });
+    throw redirect(302, 'login');
 }
