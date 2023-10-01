@@ -1,6 +1,9 @@
 <script>
 import ServiceLogo from "$lib/assets/images/smarter_logo.svg";
 import ParentsLogo from "$lib/assets/images/parents_icon.svg";
+import InstituteLogo from "$lib/assets/images/institute_icon.svg";
+
+export let logo;
 </script>
 
 
@@ -13,6 +16,6 @@ import ParentsLogo from "$lib/assets/images/parents_icon.svg";
         </div>
     </div>
     <div class="shrink ">
-        <img class="w-20 mb-3" src="{ParentsLogo}"/>
+        <img class="w-20 mb-3" src="{logo}"/>
     </div>
 </div>

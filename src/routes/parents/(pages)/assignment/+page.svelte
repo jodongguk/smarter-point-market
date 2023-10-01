@@ -12,7 +12,7 @@
     $: selectChildren = get(userSelectChildren);
     $: assignmentList = data.assignmentList;
     $: assignmentId = data.assignmentId;
-    $: submitList = data.submitList;
+    $: assignment = data.assignment;
 
     let comment: String;
 
@@ -20,7 +20,14 @@
         assignmentId = id;
         changeSearchParam({ value: id, param: 'assignmentId' })
     }
-
+    const onSubmit = () => {
+        const assignmentSubmitSaveStore = new AssignmentSubmitSaveStore();
+        assignmentSubmitSaveStore.mutate({
+            assignmentId: assignmentId,
+            accountId: selectChildren.id,
+            comment: comment
+        })
+    }
 </script>
 
 <svelte:head>
@@ -42,28 +49,28 @@
     </div>
 </div>
 
-<div class="flex flex-wrap justify-center space-x-2">
-    <button type="button" class="btn bg-point-market-purple4 w-1/3 text-white p-3.5 rounded-full tracking-wide font-bold font-display mt-2" >인증하기</button>
-    <button type="button" class="btn bg-point-market-purple5 w-1/3 text-white p-3.5 rounded-full tracking-wide font-bold font-display mt-2" >반려하기</button>
-</div>
 
 <div class="p-4">
-    {#each submitList as submit}
-        <div>
-            <h6 class="text-lg font-bold text-point-market-purple1">{submit.assignment.title}</h6>
-            <h6 class="text-md font-bold text-gray-600">{submit.account.name}</h6>
-        </div>
-        <div class="card mt-4 shadow-lg rounded-2xl overflow-hidden mb-2">
-            <section class="">
-                <article class="inset-0 w-full">
-                </article>
-                <p class="font-bold p-4 text-lg" data-toc-ignore="">{submit.comment}</p>
-            </section>
-        </div>
-    {/each}
-    {#if submitList.length === 0}
-        <div class="card mt-4 shadow-lg rounded-2xl overflow-hidden mb-2">
-            <p class="p-4 w-full text-center text-lg font-bold text-point-market-purple1">제출한 미션이 없습니다.</p>
-        </div>
-    {/if}
+    <div class="card mt-4 shadow-lg rounded-2xl overflow-hidden mb-2">
+        <section class="">
+            <article class="relative inset-0 w-full text-white ">
+                <img width="w-full object-cover object-center opacity-60" src="https://unsplash.it/400/400">
+                <label class="absolute top-0 w-full">
+                    <h3 class="font-bold p-4 text-4xl" data-toc-ignore="">{assignment.title}</h3>
+                </label>
+                <p class="absolute bottom-0 text-center w-full p-4 text-point-market-purple1 font-bold text-4xl">+{assignment.rewardCredit}P</p>
+            </article>
+        </section>
+        <footer class="flex justify-center bg-point-market-purple1 rounded-b-2xl p-2">
+            <button type="button" class="bg-white rounded-full p-2">
+                <img class="" src="{CameraIcon}" />
+            </button>
+        </footer>
+    </div>
+
+
+    <input type="text" class="w-full text-lg rounded-lg px-4 py-3 border border-gray-400 focus:outline-point-market-purple1" bind:value={comment}/>
+    <button type="button" class="btn w-full bg-point-market-purple2 text-white p-3.5 rounded-lg tracking-wide font-bold font-display mt-2" on:click={onSubmit}>확인</button>
 </div>
+
+

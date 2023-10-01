@@ -1,10 +1,12 @@
 mutation UserLogin(
 	$userid: String!,
 	$password: String!
+	$role: String
 ) {
 	login(
 		userid: $userid
 		password: $password
+		role: $role
 	) {
 		accessToken
 		refreshToken

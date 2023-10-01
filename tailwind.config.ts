@@ -18,6 +18,9 @@ export default {
             colors: {
                 'point-market-purple1': '#7800CE',
                 'point-market-purple2': '#A83DFF',
+                'point-market-purple3': '#6D44F7',
+                'point-market-purple4': '#CB5BF3',
+                'point-market-purple5': '#F35BD5',
                 'point-market-gray1': '#4F5855',
 
                 'point-market-gradient1': {from: '#FFC94A', to: '#FFAC00',},

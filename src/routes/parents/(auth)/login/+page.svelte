@@ -1,7 +1,7 @@
 <script lang="ts">
     import {goto} from '$app/navigation';
     import {enhance, applyAction} from '$app/forms'
-    import logo from "$lib/assets/images/institute_icon.svg";
+    import logo from "$lib/assets/images/parents_icon.svg";
     import AuthLogo from "$lib/components/common/AuthLogo.svelte";
     import KakaoIcon from "$lib/assets/images/kakao_icon.svg";
     import {authFromSubmitting} from "$lib/stores";

@@ -1,4 +1,4 @@
-query UserMe {
+query UserMeByParent {
     userMe {
         id
         name
@@ -9,6 +9,12 @@ query UserMe {
         }
         authorities {
             authorityName
+        }
+        children {
+            id
+            name
+            phoneNumber
+            birthDate
         }
     }
 }

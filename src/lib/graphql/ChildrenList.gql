@@ -1,0 +1,17 @@
+query ChildrenList(
+    $name: String
+    $birthDate: Date
+    $phoneNumber: String
+) {
+    chidren(filter:{
+        name: $name
+        phoneNumber: $phoneNumber
+        birthDate: $birthDate
+        role: "child"
+    }) {
+        userid
+        name
+        birthDate
+        phoneNumber
+    }
+}

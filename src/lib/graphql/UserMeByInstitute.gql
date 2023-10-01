@@ -1,0 +1,18 @@
+query UserMeByInstitute {
+    userMe {
+        id
+        name
+        phoneNumber
+        birthDate
+        credit {
+            balance
+        }
+        authorities {
+            authorityName
+        }
+        institutes {
+            id
+            name
+        }
+    }
+}

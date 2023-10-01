@@ -7,6 +7,7 @@ import {
     COOKIE_USER_REFRESH,
     COOKIE_USER_SESSION
 } from "$lib/constants";
+import {userSelectInstitute} from "$lib/stores";
 
 
 export default class UserService {

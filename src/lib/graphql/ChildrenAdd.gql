@@ -1,0 +1,17 @@
+mutation ChildrenAdd(
+    $name: String!
+    $phoneNumber: String
+    $birthDate: Date
+) {
+    join(inputJoinAccount: {
+        name: $name
+        phoneNumber: $phoneNumber
+        birthDate: $birthDate
+    }) {
+        id
+        userid
+        name
+        birthDate
+        phoneNumber
+    }
+}

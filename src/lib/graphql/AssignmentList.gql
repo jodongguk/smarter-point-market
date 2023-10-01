@@ -1,0 +1,30 @@
+query AssignmentList(
+    $instituteId: ID
+    $children: ID
+) {
+    assignments(
+        filter: {
+            children: $children
+            institute: {
+                id: $instituteId
+            }
+        }
+    ) {
+        pageInfo {
+            startCursor
+            endCursor
+            hasNextPage
+            hasPreviousPage
+        }
+        edges {
+            cursor
+            node {
+                id
+                title
+                startDate
+                endDate
+                rewardCredit
+            }
+        }
+    }
+}

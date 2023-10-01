@@ -16,7 +16,7 @@ export const actions: Actions = {
         const dataFields = {
             userid: data.get("userid")?.toString(),
             password: data.get("password")?.toString(),
-            role: "institute"
+            role: "parent"
         };
 
         const missing = getMissingFields(dataFields);
@@ -28,7 +28,7 @@ export const actions: Actions = {
             return fail(HTTPCode.InternalServerError, Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString());
         }
 
-        throw redirect(HTTPCode.SeeOther, data.get("from")?.toString() ?? "/classes/main");
+        throw redirect(HTTPCode.SeeOther, data.get("from")?.toString() ?? "/parents/main");
     }
 };
 

@@ -4,7 +4,7 @@
     import {AssignmentSaveStore} from "$houdini"
     import type {DrawerStore} from "@skeletonlabs/skeleton/dist/utilities/Drawer/stores";
 
-    export let drawerStore: DrawerStore;
+    export let pageDrawerStore: DrawerStore;
 
     let title;
     let startDate;
@@ -32,7 +32,7 @@
             endDate: endDate,
             rewardCredit: rewardCredit
         });
-        drawerStore.close();
+        pageDrawerStore.close();
     }
 </script>
 

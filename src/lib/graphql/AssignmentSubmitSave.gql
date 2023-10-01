@@ -1,0 +1,20 @@
+mutation AssignmentSubmitSave(
+    $assignmentId: ID
+    $accountId: ID
+    $comment: String
+) {
+    assignmentSubmit(
+        inputAssignmentSubmit: {
+            assignment: {
+                id: $assignmentId
+            }
+            account: {
+                id: $accountId
+            }
+            comment: $comment
+        }
+    ) {
+        id
+        comment
+    }
+}

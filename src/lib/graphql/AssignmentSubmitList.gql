@@ -1,0 +1,30 @@
+query AssignmentSubmitList(
+    $assignmentId: ID
+    $accountId: ID
+) {
+    assignmentSubmits(
+        filter: {
+            assignment: {
+                id: $assignmentId
+            }
+            account: {
+                id: $accountId
+            }
+        }
+    ) {
+        account {
+            id
+            userid
+            name
+            birthDate
+            phoneNumber
+        }
+        assignment {
+            id
+            title
+            rewardCredit
+        }
+        assignmentSubmitType
+        comment
+    }
+}

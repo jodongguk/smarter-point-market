@@ -1,8 +1,11 @@
 <script lang="ts">
     import type { PageData } from './$types';
     import {type DrawerSettings, getDrawerStore} from "@skeletonlabs/skeleton";
+    import {formatNumberCommaText} from "$lib/utils/FormatData";
 
     export let data: PageData;
+
+    $: assignmentList = data.list;
 
     const drawerStore = getDrawerStore();
 
@@ -29,23 +32,13 @@
     </button>
 
     <div class="flex flex-wrap w-full mt-8">
+        {#each assignmentList as assignment}
         <div class="w-1/2 p-4">
             <button type="button" class="bg-point-market-purple2 w-full px-2 py-2 rounded-lg font-bold text-white">
-                엄마안마해주기
-                <span class="font-bold text-white block">1000p</span>
+                {assignment.title}
+                <span class="font-bold text-white block">{formatNumberCommaText(assignment.rewardCredit)}P</span>
             </button>
         </div>
-        <div class="w-1/2 p-4">
-            <button type="button" class="bg-point-market-purple2 w-full px-2 py-2 rounded-lg font-bold text-white">
-                엄마안마해주기
-                <span class="font-bold text-white block">1000p</span>
-            </button>
-        </div>
-        <div class="w-1/2 p-4">
-            <button type="button" class="bg-point-market-purple2 w-full px-2 py-2 rounded-lg font-bold text-white">
-                엄마안마해주기
-                <span class="font-bold text-white block">1000p</span>
-            </button>
-        </div>
+        {/each}
     </div>
 </div>

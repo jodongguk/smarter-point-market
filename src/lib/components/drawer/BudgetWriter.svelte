@@ -4,7 +4,7 @@
     import {BudgetSaveStore} from "$houdini";
     import type {DrawerStore} from "@skeletonlabs/skeleton/dist/utilities/Drawer/stores";
 
-    export let drawerStore: DrawerStore;
+    export let pageDrawerStore: DrawerStore;
 
     let budgetAmount;
     let budgetStartDate;
@@ -33,7 +33,7 @@
             endDate: budgetEndDate,
             budgetAmount: budgetAmount
         });
-        drawerStore.close();
+        pageDrawerStore.close();
     }
 </script>
 
