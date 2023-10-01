@@ -6,12 +6,27 @@
     import KakaoIcon from "$lib/assets/images/kakao_icon.svg";
     import {authFromSubmitting} from "$lib/stores";
     import {page} from "$app/stores";
+    import type {DrawerSettings} from "@skeletonlabs/skeleton";
+    import {getDrawerStore} from "@skeletonlabs/skeleton";
 
     let userid: string;
     let password: string;
     let missing: string[] = [];
 
     const from = $page.url.searchParams.get("from");
+
+    const drawerStore = getDrawerStore();
+    const joinPageHandler = () => {
+        const settings: DrawerSettings = {
+            id: 'userJoinByParent',
+            position: 'left',
+            width: 'w-full',
+            meta: {
+                title: "회원가입"
+            }
+        };
+        drawerStore.open(settings);
+    }
 </script>
 
 <svelte:head>
@@ -58,7 +73,7 @@
                     </button>
                     <button type="button"
                             class="bg-white border border-[#DDDDDD] text-[#434343] p-3.5 w-full rounded-lg tracking-wide font-bold font-display"
-                            on:click={() => goto('join')}>
+                            on:click={joinPageHandler}>
                         회원가입
                     </button>
                 </div>
@@ -66,16 +81,14 @@
         </div>
         <div class="flex flex-row justify-between mt-3">
             <button class="text-sm font-semibold text-[#434343]">아이디/비밀번호 찾기</button>
-            <button class="text-sm font-semibold text-[#434343] flex flex-row items-center"><img class="w-4 mr-1"
-                                                                                                 src="{KakaoIcon}"/> 카카오톡
-                실시간 문의
+            <button class="text-sm font-semibold text-[#434343] flex flex-row items-center">
+                <img class="w-4 mr-1" src="{KakaoIcon}"/> 카카오톡 실시간 문의
             </button>
         </div>
 
         <div class="flex flex-col mt-6">
             <h2 class="text-md font-bold text-[#434343] text-center">대표번호 <a>1533-4147</a></h2>
-            <p class="text-sm font-semibold text-[#999999] text-center mt-4">계속 진행하시는 경우 스마터의 이용약관에 동의하고스마터의 개인정보 사용동의 정책을
-                읽었음을 확인한것으로 간주합니다.</p>
+            <p class="text-sm font-semibold text-[#999999] text-center mt-4">계속 진행하시는 경우 스마터의 이용약관에 동의하고스마터의 개인정보 사용동의 정책을 읽었음을 확인한것으로 간주합니다.</p>
         </div>
 
     </div>

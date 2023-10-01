@@ -3,8 +3,13 @@
     import {formatNumberCommaText} from "$lib/utils/FormatData";
     import {AssignmentSaveStore} from "$houdini"
     import type {DrawerStore} from "@skeletonlabs/skeleton/dist/utilities/Drawer/stores";
+    import {get} from "svelte/store";
+    import {userSelectInstitute} from "$lib/stores";
+    import {invalidateAll} from "$app/navigation";
 
     export let pageDrawerStore: DrawerStore;
+
+    $: selectInstitute = get(userSelectInstitute);
 
     let title;
     let startDate;
@@ -26,13 +31,14 @@
     const onCompleteHandler = async (e: Event): void => {
         const assignmentSaveStore = new AssignmentSaveStore();
         await assignmentSaveStore.mutate({
-            institueId: 1,
+            institueId: selectInstitute.id,
             title: title,
             startDate: startDate,
             endDate: endDate,
             rewardCredit: rewardCredit
         });
         pageDrawerStore.close();
+        await invalidateAll();
     }
 </script>
 

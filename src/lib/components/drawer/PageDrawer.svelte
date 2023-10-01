@@ -6,6 +6,8 @@
     import MypageByParent from "$lib/components/drawer/MypageByParent.svelte";
     import MypageByClass from "$lib/components/drawer/MypageByClass.svelte";
     import type {DrawerStore} from "@skeletonlabs/skeleton/dist/utilities/Drawer/stores";
+    import UserJoinByParent from "$lib/components/drawer/UserJoinByParent.svelte";
+    import UserJoinByClass from "$lib/components/drawer/UserJoinByClass.svelte";
 
     export let pageDrawerStore: DrawerStore;
     export let userMe;
@@ -31,6 +33,14 @@
                 </svelte:fragment>
             </AppBar>
         </svelte:fragment>
+
+        {#if pageDrawer === "userJoinByClass"}
+            <UserJoinByClass {pageDrawerStore} {userMe}/>
+        {/if}
+
+        {#if pageDrawer === "userJoinByParent"}
+            <UserJoinByParent {pageDrawerStore} {userMe}/>
+        {/if}
 
         {#if pageDrawer === "budgetWriteDrawer"}
             <BudgetWriter {pageDrawerStore} />

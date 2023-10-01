@@ -1,9 +1,11 @@
 query AssignmentSubmitList(
     $assignmentId: ID
     $accountId: ID
+    $types: [String]
 ) {
     assignmentSubmits(
         filter: {
+            assignmentSubmitType: $types
             assignment: {
                 id: $assignmentId
             }
@@ -26,5 +28,7 @@ query AssignmentSubmitList(
         }
         assignmentSubmitType
         comment
+        createdAt
+        updatedAt
     }
 }

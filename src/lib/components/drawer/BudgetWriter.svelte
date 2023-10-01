@@ -3,8 +3,13 @@
     import {formatNumberCommaText} from "$lib/utils/FormatData";
     import {BudgetSaveStore} from "$houdini";
     import type {DrawerStore} from "@skeletonlabs/skeleton/dist/utilities/Drawer/stores";
+    import {get} from "svelte/store";
+    import {userSelectInstitute} from "$lib/stores";
+    import {invalidateAll} from "$app/navigation";
 
     export let pageDrawerStore: DrawerStore;
+
+    $: selectInstitute = get(userSelectInstitute);
 
     let budgetAmount;
     let budgetStartDate;
@@ -28,12 +33,13 @@
     const onCompleteHandler = async (e: Event): void => {
         const budgetSaveStore = new BudgetSaveStore();
         await budgetSaveStore.mutate({
-            institueId: 1,
+            institueId: selectInstitute.id,
             startDate: budgetStartDate,
             endDate: budgetEndDate,
             budgetAmount: budgetAmount
         });
         pageDrawerStore.close();
+        await invalidateAll();
     }
 </script>
 

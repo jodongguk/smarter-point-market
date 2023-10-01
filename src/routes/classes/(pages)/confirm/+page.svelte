@@ -1,11 +1,11 @@
 <script lang="ts">
     import type { PageData } from './$types';
-    import CameraIcon from "$lib/assets/images/camera_icon.svg";
     import {formatNumberCommaText} from "$lib/utils/FormatData";
     import {changeSearchParam} from "$lib/utils/changeSearchParam";
-    import {AssignmentSubmitSaveStore} from "$houdini";
     import {get} from "svelte/store";
     import {userSelectChildren} from "$lib/stores";
+    import AssignmentSerivce from "$data/service/AssignmentSerivce";
+    import {invalidateAll} from "$app/navigation";
 
     export let data: PageData;
 
@@ -13,14 +13,26 @@
     $: assignmentList = data.assignmentList;
     $: assignmentId = data.assignmentId;
     $: submitList = data.submitList;
-
-    let comment: String;
+    $: selectSubmit = [];
 
     const changeIdHandler = (id) => {
         assignmentId = id;
         changeSearchParam({ value: id, param: 'assignmentId' })
-    }
+    };
 
+    const onSuccessHandler = (async () => {
+        AssignmentSerivce.submitSuccess({
+            list: selectSubmit.map(id => {return {id}})
+        });
+        await invalidateAll();
+    });
+
+    const onRejectHandler = (async () => {
+        AssignmentSerivce.submitReject({
+            list: selectSubmit.map(id => {return {id}})
+        });
+        await invalidateAll();
+    });
 </script>
 
 <svelte:head>
@@ -43,23 +55,28 @@
 </div>
 
 <div class="flex flex-wrap justify-center space-x-2">
-    <button type="button" class="btn bg-point-market-purple4 w-1/3 text-white p-3.5 rounded-full tracking-wide font-bold font-display mt-2" >인증하기</button>
-    <button type="button" class="btn bg-point-market-purple5 w-1/3 text-white p-3.5 rounded-full tracking-wide font-bold font-display mt-2" >반려하기</button>
+    <button type="button" class="btn bg-point-market-purple4 w-1/3 text-white p-3.5 rounded-full tracking-wide font-bold font-display mt-2" on:click={onSuccessHandler}>인증하기</button>
+    <button type="button" class="btn bg-point-market-purple5 w-1/3 text-white p-3.5 rounded-full tracking-wide font-bold font-display mt-2" on:click={onRejectHandler}>반려하기</button>
 </div>
 
 <div class="p-4">
     {#each submitList as submit}
         <div>
-            <h6 class="text-lg font-bold text-point-market-purple1">{submit.assignment.title}</h6>
-            <h6 class="text-md font-bold text-gray-600">{submit.account.name}</h6>
+            <h6 class="text-lg font-bold text-point-market-purple1">{submit.assignment?.title}</h6>
+            <div class="flex justify-between">
+                <h6 class="text-md font-bold text-gray-600">{submit.account?.name}</h6>
+                <span class="text-sm font-normal">{submit.createdAt}</span>
+            </div>
         </div>
-        <div class="card mt-4 shadow-lg rounded-2xl overflow-hidden mb-2">
+        <label class="card mt-4 shadow-lg rounded-2xl overflow-hidden mb-2 p-4 flex space-x-2">
+            <input class="checkbox" type="checkbox" bind:group={selectSubmit} value="{submit.id}"/>
             <section class="">
                 <article class="inset-0 w-full">
+                    <img src="https://unsplash.it/400/200">
                 </article>
-                <p class="font-bold p-4 text-lg" data-toc-ignore="">{submit.comment}</p>
+                <p class="font-bold p-4 text-lg" >{submit.comment}</p>
             </section>
-        </div>
+        </label>
     {/each}
     {#if submitList.length === 0}
         <div class="card mt-4 shadow-lg rounded-2xl overflow-hidden mb-2">

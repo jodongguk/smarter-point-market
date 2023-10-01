@@ -34,9 +34,9 @@ export default class UserService {
         password: String
         name: String
         phoneNumber: String
-        birthDate: Number
+        birthDate: String
         institutes: [InputInstitute]
-    }, event: RequestEvent) {
+    }, event?: RequestEvent) {
 
         const userJoinStore = new UserJoinStore();
 

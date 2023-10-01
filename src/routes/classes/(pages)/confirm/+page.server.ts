@@ -25,6 +25,7 @@ export const load: PageServerLoad = async (event) => {
 
     const result = await assignmentSubmitListStore.fetch({
         variables: {
+            types: ["standby"],
             assignmentId: assignmentId
         },
         event

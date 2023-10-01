@@ -1,0 +1,11 @@
+mutation AssignmentSubmitTypeSave(
+    $list: [InputAssignmentSubmit]
+) {
+    assignmentSubmitType(
+        list: $list
+    ) {
+        id
+        comment
+        assignmentSubmitType
+    }
+}
